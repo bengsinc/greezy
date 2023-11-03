@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\PedidoResource\Pages;
+namespace App\Filament\App\Resources\PedidoResource\Pages;
 
-use App\Filament\Resources\PedidoResource;
+use App\Filament\App\Resources\PedidoResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 

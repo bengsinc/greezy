@@ -2,27 +2,27 @@
 
 namespace App\Policies;
 
-use App\Models\Pedido;
+use App\Models\Formulario;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class PedidoPolicy
+class FormularioPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-       return $user->can('app.pedidos.index');
+        return $user->can('app.formularios.index');
+
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Pedido $pedido): bool
+    public function view(User $user, Formulario $formulario): bool
     {
-        return $user->can('app.pedidos.view');
-
+        return $user->can('app.formularios.view');
     }
 
     /**
@@ -30,43 +30,38 @@ class PedidoPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('app.pedidos.create');
-
+        return $user->can('app.formularios.create');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Pedido $pedido): bool
+    public function update(User $user, Formulario $formulario): bool
     {
-        return $user->can('app.pedidos.update');
-
+        return $user->can('app.formularios.update');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Pedido $pedido): bool
+    public function delete(User $user, Formulario $formulario): bool
     {
-        return $user->can('app.pedidos.delete');
-
+        return $user->can('app.formularios.delete');
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Pedido $pedido): bool
+    public function restore(User $user, Formulario $formulario): bool
     {
-        return $user->can('app.pedidos.restore');
-
+        return $user->can('app.formularios.restore');
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Pedido $pedido): bool
+    public function forceDelete(User $user, Formulario $formulario): bool
     {
-        return $user->can('app.pedidos.forceDelete');
-
+        return $user->can('app.formularios.ferceDelete');
     }
 }

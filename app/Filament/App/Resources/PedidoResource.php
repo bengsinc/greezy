@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\App\Resources;
 
 use App\Filament\Resources\PedidoResource\Pages;
 use App\Filament\Resources\PedidoResource\RelationManagers;
@@ -70,23 +70,23 @@ class PedidoResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPedidos::route('/'),
-            'create' => Pages\CreatePedido::route('/create'),
-            'edit' => Pages\EditPedido::route('/{record}/edit'),
+            'index' => \App\Filament\App\Resources\PedidoResource\Pages\ListPedidos::route('/'),
+            'create' => \App\Filament\App\Resources\PedidoResource\Pages\CreatePedido::route('/create'),
+            'edit' => \App\Filament\App\Resources\PedidoResource\Pages\EditPedido::route('/{record}/edit'),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
