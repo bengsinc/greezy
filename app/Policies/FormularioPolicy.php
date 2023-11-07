@@ -38,7 +38,9 @@ class FormularioPolicy
      */
     public function update(User $user, Formulario $formulario): bool
     {
-        return $user->can('app.formularios.update');
+//        return $user->can('app.formularios.update');
+        return $user->id === $formulario->user_id;
+
     }
 
     /**

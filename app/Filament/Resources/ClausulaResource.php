@@ -23,7 +23,12 @@ class ClausulaResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('nome')
+                    ->columnSpanFull()
+                    ->label('Titulo da Cláusula'),
+                Forms\Components\RichEditor::make('descricao')
+                    ->columnSpanFull()
+                    ->label('Conteúdo da cláusula'),
             ]);
     }
 
@@ -31,7 +36,8 @@ class ClausulaResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('nome'),
+                Tables\Columns\TextColumn::make('status')
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -47,14 +53,14 @@ class ClausulaResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -62,8 +68,8 @@ class ClausulaResource extends Resource
             'create' => Pages\CreateClausula::route('/create'),
             'edit' => Pages\EditClausula::route('/{record}/edit'),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()

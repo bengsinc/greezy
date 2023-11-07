@@ -2,26 +2,27 @@
 
 namespace App\Policies;
 
-use App\Models\Entregavel;
+use App\Models\Config;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class EntregavelPolicy
+class ConfigPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('app.entregavels.index');
+        return $user->can('app.configs.index');
+
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Entregavel $entregavel): bool
+    public function view(User $user, Config $config): bool
     {
-        return $user->can('app.entregavels.view');
+        return $user->can('app.configs.view');
     }
 
     /**
@@ -29,40 +30,38 @@ class EntregavelPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('app.entregavels.create');
+        return $user->can('app.configs.create');
     }
-
-
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Entregavel $entregavel): bool
+    public function update(User $user, Config $config): bool
     {
-        return $user->id === $entregavel->user_id;
+        return $user->can('app.configs.update');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Entregavel $entregavel): bool
+    public function delete(User $user, Config $config): bool
     {
-        return $user->can('app.entregavels.delete');
+        return $user->can('app.configs.delete');
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Entregavel $entregavel): bool
+    public function restore(User $user, Config $config): bool
     {
-        return $user->can('app.entregavels.restore');
+        return $user->can('app.configs.restore');
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Entregavel $entregavel): bool
+    public function forceDelete(User $user, Config $config): bool
     {
-        return $user->can('app.entregavels.forceDelete');
+        return $user->can('app.configs.forceDelete');
     }
 }

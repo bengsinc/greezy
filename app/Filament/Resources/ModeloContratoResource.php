@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Filament\App\Resources;
+namespace App\Filament\Resources;
 
-use App\Filament\App\Resources\FormularioResource\Pages;
-use App\Filament\App\Resources\FormularioResource\RelationManagers;
-use App\Models\Formulario;
+use App\Filament\Resources\ModeloContratoResource\Pages;
+use App\Filament\Resources\ModeloContratoResource\RelationManagers;
+use App\Models\ModeloContrato;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class FormularioResource extends Resource
+class ModeloContratoResource extends Resource
 {
-    protected static ?string $model = Formulario::class;
+    protected static ?string $model = ModeloContrato::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -25,14 +25,10 @@ class FormularioResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('nome')
                     ->columnSpanFull()
-                    ->label('Titulo do formulário'),
-                Forms\Components\RichEditor::make('descricao')
+                    ->label('Nome do modelo'),
+                Forms\Components\RichEditor::make('conteudo')
                     ->columnSpanFull()
-                    ->label('Descrição do formulário'),
-                Forms\Components\CheckboxList::make('entregavel')
-                    ->relationship('entregavel', 'nome')
-                ->label('Selecione os entregáveis do formulário'),
-
+                ->label('Conteúdo do Modelo'),
             ]);
     }
 
@@ -68,9 +64,9 @@ class FormularioResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListFormularios::route('/'),
-            'create' => Pages\CreateFormulario::route('/create'),
-            'edit' => Pages\EditFormulario::route('/{record}/edit'),
+            'index' => Pages\ListModeloContratos::route('/'),
+            'create' => Pages\CreateModeloContrato::route('/create'),
+            'edit' => Pages\EditModeloContrato::route('/{record}/edit'),
         ];
     }
 

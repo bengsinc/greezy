@@ -11,12 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('formularios', function (Blueprint $table) {
+        Schema::create('configs', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->ulid('user_id');
             $table->string('nome')->nullable();
-            $table->string('hash')->nullable();
             $table->text('descricao')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('telefone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('whatsapp')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('site')->nullable();
+            $table->string('endereco')->nullable();
             $table->string('status')->default('ativo');
             $table->timestamps();
             $table->softDeletes();
@@ -28,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('formularios');
+        Schema::dropIfExists('configs');
     }
 };

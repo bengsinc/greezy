@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('formularios', function (Blueprint $table) {
+        Schema::create('modelo_contratos', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->ulid('user_id');
             $table->string('nome')->nullable();
-            $table->string('hash')->nullable();
             $table->text('descricao')->nullable();
+            $table->text('conteudo')->nullable();
             $table->string('status')->default('ativo');
             $table->timestamps();
             $table->softDeletes();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('formularios');
+        Schema::dropIfExists('modelo_contratos');
     }
 };

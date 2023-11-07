@@ -23,7 +23,12 @@ class EntregavelResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('nome')
+                    ->columnSpanFull()
+                    ->label('Titulo'),
+                Forms\Components\RichEditor::make('descricao')
+                    ->columnSpanFull()
+                    ->label('Conteúdo do entregável'),
             ]);
     }
 
@@ -31,7 +36,8 @@ class EntregavelResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('nome'),
+                Tables\Columns\TextColumn::make('status')
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),

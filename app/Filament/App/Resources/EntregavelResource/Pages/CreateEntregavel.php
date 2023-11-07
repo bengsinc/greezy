@@ -9,4 +9,11 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateEntregavel extends CreateRecord
 {
     protected static string $resource = EntregavelResource::class;
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        $data['user_id'] = auth()->id();
+
+        return $data;
+
+    }
 }
