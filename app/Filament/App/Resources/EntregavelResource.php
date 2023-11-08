@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Guava\FilamentIconPicker\Forms\IconPicker;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -29,7 +30,14 @@ class EntregavelResource extends Resource
                 Forms\Components\RichEditor::make('descricao')
                     ->columnSpanFull()
                     ->label('Conteúdo do entregável'),
-            ]);
+
+                Forms\Components\FileUpload::make('icone')
+                    ->label('icone que representa o serviço em formato png com fundo transparente (máximo 1MB)')
+                    ->openable(true)
+                    ->columnSpanFull()
+                    ->directory('icones')
+                    ->previewable(true),
+        ]);
     }
 
     public static function table(Table $table): Table

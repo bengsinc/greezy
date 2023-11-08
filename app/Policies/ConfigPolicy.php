@@ -38,7 +38,8 @@ class ConfigPolicy
      */
     public function update(User $user, Config $config): bool
     {
-        return $user->can('app.configs.update');
+        return $user->id === $config->user_id;
+
     }
 
     /**

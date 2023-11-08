@@ -8,11 +8,12 @@ use Livewire\Component;
 class Landinpage extends Component
 {
     public $formulario;
+    public $config;
 
 
     public function mount($id){
         $this->formulario = Formulario::findOrFail($id);
-//        dd($this->formulario->entregavel);
+        $this->config = $this->formulario->user->config;
     }
 
     public function render()

@@ -17,4 +17,9 @@ class Formulario extends Model
     public function entregavel(){
         return $this->belongsToMany(Entregavel::class);
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+//auth()->id()
 }

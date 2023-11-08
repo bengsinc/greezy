@@ -3,10 +3,12 @@
     <header class="absolute inset-x-0 top-0 z-50" id="inicio">
         <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
-                <a href="#" class="-m-1.5 p-1.5">
+                @if($config->logo)
+                <a href="#inicio" class="-m-1.5 p-1.5">
                     <span class="sr-only">Logo</span>
-                    <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
+                    <img class="h-8 w-auto" src="{{url('storage').'/'.$config->logo}}" alt="">
                 </a>
+                @endif
             </div>
             <div class="flex lg:hidden">
                 <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
@@ -32,10 +34,12 @@
             <div class="fixed inset-0 z-50"></div>
             <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                 <div class="flex items-center justify-between">
-                    <a href="#" class="-m-1.5 p-1.5">
-                        <span class="sr-only">Logo</span>
-                        <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
-                    </a>
+                    @if($config->logo)
+                        <a href="#inicio" class="-m-1.5 p-1.5">
+                            <span class="sr-only">Logo</span>
+                            <img class="h-8 w-auto" src="{{url('storage').'/'.$config->logo}}" alt="">
+                        </a>
+                    @endif
                     <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
                         <span class="sr-only">Close menu</span>
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -72,8 +76,8 @@
                         <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">{{$formulario->nome}}</h1>
                         <p class="mt-6 text-lg leading-8 text-gray-600">{!! $formulario->descricao !!}</p>
                         <div class="mt-10 flex items-center justify-center gap-x-6">
-                            <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Fazer orçamento</a>
-                            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">conhecer mais <span aria-hidden="true">→</span></a>
+                            <a href="#orcamento" class="rounded-md bg-[{{$config->cor_primaria}}] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[{{$config->cor_primaria}}] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[{{$config->cor_primaria}}]">Fazer orçamento</a>
+                            <a href="#sobre" class="text-sm font-semibold leading-6 text-gray-900">conhecer mais <span aria-hidden="true">→</span></a>
                         </div>
                     </div>
 {{--                    <div class="mt-16 flow-root sm:mt-24">--}}
@@ -93,8 +97,8 @@
 
         <div class="mx-auto mt-10 max-w-7xl sm:mt-10 sm:px-6 lg:px-8" id="sobre">
             <div class="relative overflow-hidden bg-gray-900 px-6 py-20 shadow-xl sm:rounded-3xl sm:px-10 sm:py-24 md:px-12 lg:px-20">
-                <img class="absolute inset-0 h-full w-full object-cover brightness-150 saturate-0" src="https://images.unsplash.com/photo-1601381718415-a05fb0a261f3?ixid=MXwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8ODl8fHxlbnwwfHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1216&q=80" alt="">
-                <div class="absolute inset-0 bg-gray-900/90 mix-blend-multiply"></div>
+                <img class="absolute inset-0 h-full w-full object-cover brightness-150 saturate-0" src="{{url('img/bg-sobre.jpg')}}" alt="">
+                <div class="absolute inset-0 bg-[{{$config->cor_secundaria}}] mix-blend-multiply"></div>
                 <div class="absolute -left-80 -top-56 transform-gpu blur-3xl" aria-hidden="true">
                     <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-r from-[#ff4694] to-[#776fff] opacity-[0.45]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
                 </div>
@@ -107,7 +111,7 @@
                             <p class="mt-2 text-3xl font-bold tracking-tight text-gray-200 sm:text-4xl mb-4">Quem somos </p>
 
                             <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                                {!! $config->descricao !!}
                             </p>
                         </blockquote>
 
@@ -122,12 +126,12 @@
             <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-8 text-center">Quem Confia </p>
 
             <div class="mx-auto grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 sm:gap-y-14 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-                <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg" alt="Transistor" width="158" height="48">
-                <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg" alt="Reform" width="158" height="48">
-                <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/tuple-logo-gray-900.svg" alt="Tuple" width="158" height="48">
-                <img class="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-900.svg" alt="SavvyCal" width="158" height="48">
-                <img class="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/statamic-logo-gray-900.svg" alt="Statamic" width="158" height="48">
-            </div>
+                @if($config->logos_clientes)
+                   @foreach($config->logos_clientes as $item)
+                      <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="{{url('storage').'/'.$item}}" alt="Transistor" width="158" style="max-height: 50px">
+                        @endforeach
+                @endif
+               </div>
 
         </div>
 
@@ -135,7 +139,7 @@
         <!-- Feature section -->
         <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-56 lg:px-8" id="servicos">
             <div class="mx-auto max-w-2xl lg:text-center">
-                <h2 class="text-base font-semibold leading-7 text-indigo-600">{{$formulario->nome}}</h2>
+                <h2 class="text-base font-semibold leading-7 text-[{{$config->cor_primaria}}]">{{$formulario->nome}}</h2>
                 <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Entregáveis </p>
                 <p class="mt-6 text-lg leading-8 text-gray-600">Conheça os itens que podemos entregar para este serviço</p>
             </div>
@@ -145,11 +149,11 @@
 
                     <div class="relative pl-16">
                         <dt class="text-base font-semibold leading-7 text-gray-900">
-                            <div class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
-                                <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
-                                </svg>
+                            @if($item->icone)
+                            <div class="absolute left-0 top-2 flex h-12 w-12 items-center justify-center ">
+                               <img src="{{url('storage').'/'.$item->icone}}">
                             </div>
+                            @endif
                             {{$item->nome}}
                         </dt>
                         <dd class="mt-2 text-base leading-7 text-gray-600">
@@ -186,34 +190,67 @@
         <footer aria-labelledby="footer-heading" class="relative border-t border-gray-900/10 py-24 sm:mt-56 sm:py-32">
             <h2 id="footer-heading" class="sr-only">Rodapé</h2>
             <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-                <img class="h-7" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Company name">
+                <div>
+                    @if($config->logo)
+                        <a href="#inicio" class="-m-1.5 p-1.5">
+                            <span class="sr-only">Logo</span>
+                            <img class="h-8 w-auto" src="{{url('storage').'/'.$config->logo}}" alt="">
+                        </a>
+                    @endif
+                @if($config->endereco)
+                        <p class="text-sm leading-6 text-gray-600 hover:text-gray-900 py-4">{{$config->endereco}}</p>
+                    @endif
+                </div>
+
                 <div class="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
                         <div>
                             <h3 class="text-sm font-semibold leading-6 text-gray-900">Contatos</h3>
                             <ul role="list" class="mt-6 space-y-4">
+                                @if($config->telefone)
                                 <li>
-                                    <a href="#" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Hosting teste tedet</a>
+                                    <a href="#" class="text-sm leading-6 text-gray-600 hover:text-gray-900"><b>Telefone:</b>  {{$config->telefone}}</a>
                                 </li>
-                                <li>
-                                    <a href="#" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Data Services</a>
-                                </li>
+                                @endif
+                                    @if($config->whatsapp)
+                                        <li>
+                                            <a href="{{$config->whatsapp}}" class="text-sm leading-6 text-gray-600 hover:text-gray-900"><b>Whatsapp:</b> Clique aqui para conversar</a>
+                                        </li>
+                                    @endif
+                                    @if($config->email)
+                                        <li>
+                                            <a class="text-sm leading-6 text-gray-600 hover:text-gray-900"><b>Email:</b> {{$config->email}}</a>
+                                        </li>
+                                    @endif
+
 
                             </ul>
                         </div>
                         <div class="mt-10 md:mt-0">
                             <h3 class="text-sm font-semibold leading-6 text-gray-900">Siga-nos</h3>
                             <ul role="list" class="mt-6 space-y-4">
-                                <li>
-                                    <a href="#" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Pricing</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-sm leading-6 text-gray-600 hover:text-gray-900">Documentation</a>
-                                </li>
+                                @if($config->instagram)
+                                    <li>
+                                        <a href="{{$config->instagram}}" class="text-sm leading-6 text-gray-600 hover:text-gray-900"><b>Instagram:</b> {{$config->instagram}}</a>
+                                    </li>
+                                @endif
+                                    @if($config->facebook)
+                                        <li>
+                                            <a href="{{$config->facebook}}" class="text-sm leading-6 text-gray-600 hover:text-gray-900"><b>Facebook:</b> {{$config->facebook}}</a>
+                                        </li>
+                                    @endif
+                                    @if($config->site)
+                                        <li>
+                                            <a href="{{$config->site}}" class="text-sm leading-6 text-gray-600 hover:text-gray-900"><b>Site:</b> {{$config->site}}</a>
+                                        </li>
+                                    @endif
+
+
 
                             </ul>
                         </div>
                 </div>
             </div>
+
         </footer>
     </div>
     <style>
