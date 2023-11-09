@@ -17,7 +17,9 @@ class FormularioResource extends Resource
 {
     protected static ?string $model = Formulario::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
+    protected static ?string $modelLabel = 'Formulário';
+    protected static ?string $pluralModelLabel = 'Formulários';
 
     public static function form(Form $form): Form
     {
@@ -31,8 +33,16 @@ class FormularioResource extends Resource
                     ->label('Descrição do formulário'),
                 Forms\Components\CheckboxList::make('entregavel')
                     ->relationship('entregavel', 'nome')
-                ->label('Selecione os entregáveis do formulário'),
-
+                    ->label('Selecione os entregáveis do formulário'),
+                Forms\Components\Select::make('modelo_contrato_id')
+                    ->searchable()
+                    ->label('Selecione o Modelo de Contrato')
+                    ->preload()
+                    ->options(function () {
+                        return ModeloContrato::query()->where('status', 'ativo')->get()->mapWithKeys(function ($modelo) {
+                            return [$modelo->id => "{$modelo->nome} "];
+                        })->toArray();
+                    }),
             ]);
     }
 

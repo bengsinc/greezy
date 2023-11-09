@@ -17,7 +17,7 @@ class ContratoResource extends Resource
 {
     protected static ?string $model = Contrato::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
     public static function form(Form $form): Form
     {
@@ -47,14 +47,14 @@ class ContratoResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -62,8 +62,8 @@ class ContratoResource extends Resource
             'create' => Pages\CreateContrato::route('/create'),
             'edit' => Pages\EditContrato::route('/{record}/edit'),
         ];
-    }    
-    
+    }
+
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()

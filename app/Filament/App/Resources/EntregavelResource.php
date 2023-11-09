@@ -5,8 +5,10 @@ namespace App\Filament\App\Resources;
 use App\Filament\App\Resources\EntregavelResource\Pages;
 use App\Filament\App\Resources\EntregavelResource\RelationManagers;
 use App\Models\Entregavel;
+use App\Models\Servico;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Navigation\NavigationGroup;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -18,8 +20,10 @@ class EntregavelResource extends Resource
 {
     protected static ?string $model = Entregavel::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-list-bullet';
     protected static ?string $label = 'Entregáveis';
+    protected static ?string $navigationGroup = 'Serviços';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -37,7 +41,18 @@ class EntregavelResource extends Resource
                     ->columnSpanFull()
                     ->directory('icones')
                     ->previewable(true),
-        ]);
+
+                Forms\Components\Select::make('servico_id')
+                    ->searchable()
+                    ->label('Selecione o Serviço')
+                    ->preload()
+                    ->options(function () {
+                        return Servico::query()->where('user_id', auth()->user()->id)->get()->mapWithKeys(function ($servico) {
+                            return [$servico->id => "{$servico->nome} "];
+                        })->toArray();
+                    }),
+
+            ]);
     }
 
     public static function table(Table $table): Table
@@ -85,4 +100,6 @@ class EntregavelResource extends Resource
                 SoftDeletingScope::class,
             ]);
     }
+
+
 }

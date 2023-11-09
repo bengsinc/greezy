@@ -17,7 +17,10 @@ class ConfigResource extends Resource
 {
     protected static ?string $model = Config::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-cog-8-tooth';
+    protected static ?string $modelLabel = 'Configuração';
+    protected static ?string $pluralModelLabel = 'Configurações';
+    protected static ?string $slug = 'configuracoes';
 
     public static function form(Form $form): Form
     {
@@ -127,4 +130,6 @@ class ConfigResource extends Resource
                 SoftDeletingScope::class,
             ]);
     }
+
+
 }
