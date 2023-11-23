@@ -5,6 +5,7 @@ namespace App\Filament\App\Resources;
 use App\Filament\App\Resources\FormularioResource\Pages;
 use App\Filament\App\Resources\FormularioResource\RelationManagers;
 use App\Models\Formulario;
+use App\Models\ModeloContrato;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -31,9 +32,9 @@ class FormularioResource extends Resource
                 Forms\Components\RichEditor::make('descricao')
                     ->columnSpanFull()
                     ->label('Descrição do formulário'),
-                Forms\Components\CheckboxList::make('entregavel')
-                    ->relationship('entregavel', 'nome')
-                    ->label('Selecione os entregáveis do formulário'),
+                Forms\Components\CheckboxList::make('servicos')
+                    ->relationship('servicos', 'nome')
+                    ->label('Selecione os serviços para o formulário'),
                 Forms\Components\Select::make('modelo_contrato_id')
                     ->searchable()
                     ->label('Selecione o Modelo de Contrato')

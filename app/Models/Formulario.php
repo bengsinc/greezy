@@ -14,12 +14,19 @@ class Formulario extends Model
     protected $guarded = [
         'id'
     ];
+
     public function entregavel(){
         return $this->belongsToMany(Entregavel::class);
     }
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function servicos(){
+        return $this->belongsToMany(Servico::class);
+    }
+
+
 
 //auth()->id()
 }

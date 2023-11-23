@@ -158,12 +158,15 @@
 
             <div
                 class="mx-auto grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 sm:gap-y-14 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+
                 @if($config->logos_clientes)
                     @foreach($config->logos_clientes as $item)
                         <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
                              src="{{url('storage').'/'.$item}}" alt="Transistor" width="158" style="max-height: 50px">
                     @endforeach
+
                 @endif
+
             </div>
 
         </div>
@@ -187,8 +190,8 @@
                                     <div class="absolute left-0 top-2 flex h-12 w-12 items-center justify-center ">
                                         <img src="{{url('storage').'/'.$item->icone}}">
                                     </div>
-                                @endif
-                                {{$item->nome}}
+                            @endif
+                            {{$item->nome}}
                             <dt>
                             <dd class="mt-2 text-base leading-7 text-gray-600">
                                 {!! $item->descricao !!}
@@ -211,11 +214,11 @@
                     style="clip-path: polygon(73.6% 48.6%, 91.7% 88.5%, 100% 53.9%, 97.4% 18.1%, 92.5% 15.4%, 75.7% 36.3%, 55.3% 52.8%, 46.5% 50.9%, 45% 37.4%, 50.3% 13.1%, 21.3% 36.2%, 0.1% 0.1%, 5.4% 49.1%, 21.4% 36.4%, 58.9% 100%, 73.6% 48.6%)"></div>
             </div>
             <div class="mx-auto max-w-2xl text-center">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Orçamento.</h2>
-                <p class="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-600">Preencha o formulário abaixo con seus
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Orçamento</h2>
+                <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600">Preencha o formulário abaixo com seus
                     dados para solicitar o seu orçamento</p>
             </div>
-            {{--            Formulário Aqui--}}
+            <livewire:landinpages.formulario form_id="{{$formulario->id}}" cor="{{$config->cor_primaria}}" />
         </div>
     </main>
 

@@ -39,7 +39,7 @@ class PedidoPolicy
      */
     public function update(User $user, Pedido $pedido): bool
     {
-        return $user->can('app.pedidos.update');
+        return $user->id === $pedido->cliente_id;
 
     }
 

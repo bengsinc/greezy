@@ -14,4 +14,8 @@ class Pedido extends Model
     protected $guarded = [
         'id'
     ];
+
+    public function entregaveis(){
+        return $this->hasMany(PedidoEntregavel::class, 'pedido_id');
+    }
 }

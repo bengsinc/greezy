@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pedidos', function (Blueprint $table) {
-            $table->ulid('id')->primary();
-            $table->string('numero')->nullable();
-            $table->text('descricao')->nullable();
+        Schema::create('formulario_servico', function (Blueprint $table) {
+            $table->ulid('formulario_id');
+            $table->ulid('servico_id');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pedidos');
+        Schema::dropIfExists('formulario_servico');
     }
 };

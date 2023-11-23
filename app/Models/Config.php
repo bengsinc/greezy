@@ -15,5 +15,9 @@ class Config extends Model
         'id'
     ];
 
+    protected $casts = [
+      'logos_clientes' => 'array'
+    ];
+
 
 }
