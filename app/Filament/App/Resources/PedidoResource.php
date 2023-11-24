@@ -7,6 +7,7 @@ use App\Filament\Resources\PedidoResource\Pages;
 use App\Filament\Resources\PedidoResource\RelationManagers;
 use App\Models\Pedido;
 use App\Models\PedidoEntregavel;
+use Filament\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -26,50 +27,77 @@ class PedidoResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('numero')
-                    ->maxLength(255)
-                    ->disabled()
-                    ->columnSpan(1),
-                Forms\Components\Textarea::make('observacao')
-                    ->disabled()
-                    ->columnSpan('full'),
-                Forms\Components\TextInput::make('orcamento')
-                    ->maxLength(255)
-                    ->disabled()
-                    ->columnSpan(1),
-                Forms\Components\TextInput::make('tipo_pagamento')
-                    ->maxLength(255)
-                    ->disabled()
-                    ->columnSpan(1),
-                Forms\Components\TextInput::make('forma_pagamento')
-                    ->maxLength(255)
-                    ->disabled()
-                    ->columnSpan(1),
-                Forms\Components\TextInput::make('nome')
-                    ->label('Solicitante')
-                    ->maxLength(255),
-                PhoneNumber::make('telefone')
-                    ->format('(99)99999-9999'),
-                Forms\Components\TextInput::make('email')
-                    ->maxLength(255),
-                Forms\Components\Select::make('status')
-                    ->options([
-                        'aguardando análise' => 'Aguardando Análise',
-                        'em analise' => 'Em análise',
-                        'aguardando cliente' => 'Aguardando cliente',
-                        'cancelado' => 'Cancelado',
-                        'aceito' => 'Aceito',
-                        'concluido' => 'Concluído',
+                Forms\Components\Section::make('Detalhes do Pedido')
+                    ->schema([
+                        Forms\Components\TextInput::make('numero')
+                            ->label('Número do pedido')
+                            ->maxLength(255)
+                            ->disabled(),
+                        Forms\Components\Textarea::make('observacao')
+                            ->label('Observação do cliente')
+                            ->disabled(),
+                        // Outros campos relacionados aos detalhes do pedido
                     ]),
+                Forms\Components\Section::make('Informações de Pagamento')
+                    ->schema([
+                        Forms\Components\TextInput::make('orcamento')
+                            ->label('Orçamento')
+                            ->maxLength(255)
+                            ->disabled()
+                            ->columnSpan(1),
+                        Forms\Components\TextInput::make('tipo_pagamento')
+                            ->label('Tipo de pagamento')
+                            ->maxLength(255)
+                            ->disabled()
+                            ->columnSpan(1),
+                        Forms\Components\TextInput::make('forma_pagamento')
+                            ->label('Forma de pagamento')
+                            ->maxLength(255)
+                            ->disabled()
+                            ->columnSpan(1),
+                        // Outros campos relacionados às informações de pagamento
+                    ]),
+                Forms\Components\Section::make('Informações do Solicitante')
+                    ->schema([
+                        Forms\Components\TextInput::make('nome')
+                            ->label('Solicitante')
+                            ->maxLength(255),
+                        PhoneNumber::make('telefone')
+                            ->format('(99)99999-9999'),
+                        Forms\Components\TextInput::make('email')
+                            ->maxLength(255),
+                        // Outros campos relacionados ao solicitante
+                    ]),
+                Forms\Components\Section::make('Entregáveis Solicitados')
+                    ->schema([
 
+                        Forms\Components\KeyValue::make('entregavel')
+                            ->label('Entregáveis')
+                            ->columnSpanFull()
+                            ->addable(false)
+                            ->deletable(false),
+                    ]),
+                Forms\Components\Section::make('Dados da sua proposta')
+                    ->schema([
+                        Forms\Components\RichEditor::make('descricao')
+                            ->label('Descrição')
+                            ->helperText('Descreva as condições de sua proposta, como valores, condições etc')
+                           ,
 
-
-
-
-
+                        Forms\Components\Select::make('status')
+                            ->options([
+                                'aguardando análise' => 'Aguardando Análise',
+                                'em analise' => 'Em análise',
+                                'aguardando cliente' => 'Aguardando cliente',
+                                'cancelado' => 'Cancelado',
+                                'aceito' => 'Aceito',
+                                'concluido' => 'Concluído',
+                            ]),
+                    ]),
 
             ]);
     }
+
 
     public static function table(Table $table): Table
     {
@@ -77,6 +105,9 @@ class PedidoResource extends Resource
             ->modifyQueryUsing(fn(Builder $query) => $query->where('cliente_id', auth()->id()))
             ->columns([
                 Tables\Columns\TextColumn::make('numero')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('nome')
+                    ->label('Cliente')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status')
                     ->searchable(),
@@ -90,6 +121,18 @@ class PedidoResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('Gerar Contrato')
+                    ->icon('heroicon-m-document-minus')
+                ->action(function ($record){
+                    dd($record);
+                }),
+                Tables\Actions\Action::make('Cancelar Pedido')
+                    ->icon('heroicon-m-archive-box-x-mark')
+                    ->action(function ($record){
+                        $record->status = 'cancelado';
+                        $record->save();
+                    })
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -103,7 +146,7 @@ class PedidoResource extends Resource
     public static function getRelations(): array
     {
         return [
-           // PedidoEntregavelRelationManager::class
+//            PedidoEntregavelRelationManager::class
         ];
     }
 

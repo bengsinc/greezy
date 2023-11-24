@@ -31,7 +31,7 @@ class EntregavelResource extends Resource
                 Forms\Components\TextInput::make('nome')
                     ->columnSpanFull()
                     ->label('Titulo'),
-                Forms\Components\RichEditor::make('descricao')
+                Forms\Components\Textarea::make('descricao')
                     ->columnSpanFull()
                     ->label('Conteúdo do entregável'),
 

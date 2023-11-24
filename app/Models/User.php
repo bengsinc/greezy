@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Livewire\Formularios;
+use App\Livewire\Landinpages\Landinpage;
 use Callcocam\Acl\Traits\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 //use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -45,6 +47,10 @@ class User extends Authenticatable
 
     public function config(){
         return $this->hasOne(Config::class);
+    }
+
+    public function formularios(){
+        return $this->hasMany(Formulario::class);
     }
 
 }

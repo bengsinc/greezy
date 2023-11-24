@@ -23,3 +23,4 @@ Route::get('/', function () {
 
 Route::get('/pagina/{id}', \App\Livewire\Landinpages\Landinpage::class)->name('site.landinpage');
 Route::get('/pedido/{id}', \App\Livewire\Pedidos::class)->name('site.pedido');
+Route::get('/{user}/formularios', \App\Livewire\Cliente::class)->name('site.formularios');
