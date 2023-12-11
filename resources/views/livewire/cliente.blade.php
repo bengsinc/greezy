@@ -45,10 +45,30 @@
 
         </div>
     </div>
+
+    <!-- Logo cloud -->
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-8  bg-gray-100 py-8 rounded-lg">
+        <p class="text-3xl font-bold tracking-tight text-[{{$config->cor_primaria}}] sm:text-4xl mb-12 text-center">Quem
+            Confia </p>
+
+        <div
+            class="mx-auto grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 sm:gap-y-14 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+
+            @if($config->logos_clientes)
+                @foreach($config->logos_clientes as $item)
+                    <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                         src="{{url('storage').'/'.$item}}" alt="Transistor" width="158" style="max-height: 50px">
+                @endforeach
+
+            @endif
+
+        </div>
+
+    </div>
+
     <!-- Footer -->
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <footer aria-labelledby="footer-heading" class="relative border-t border-gray-900/10 py-24 sm:py-32">
-            <h2 id="footer-heading" class="sr-only">Rodapé</h2>
+        <footer aria-labelledby="footer-heading" class="relative py-12">
             <div class="xl:grid xl:grid-cols-3 xl:gap-8">
                 <div>
                     @if($config->logo)
