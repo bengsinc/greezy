@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\App\Resources\EntregaveisPedidoResource\RelationManagers;
+namespace App\Filament\App\Resources\PedidoResource\RelationManagers;
 
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -10,16 +10,21 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class PedidoEntregavelRelationManager extends RelationManager
+class EntregaveisRelationManager extends RelationManager
 {
-    protected static string $relationship = 'entregaveis';
+    protected static string $relationship = 'listaentregaveis';
 
     public function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('entregavel_id')
+                Forms\Components\TextInput::make('nome')
                     ->required()
+                    ->columnSpanFull()
+                    ->maxLength(255),
+                Forms\Components\RichEditor::make('descricao')
+                    ->required()
+                    ->columnSpanFull()
                     ->maxLength(255),
             ]);
     }
@@ -27,9 +32,9 @@ class PedidoEntregavelRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('entregavel_id')
+            ->recordTitleAttribute('nome')
             ->columns([
-                Tables\Columns\TextColumn::make('entregavel_id'),
+                Tables\Columns\TextColumn::make('nome'),
             ])
             ->filters([
                 //

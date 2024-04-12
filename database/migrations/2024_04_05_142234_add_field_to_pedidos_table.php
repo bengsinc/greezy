@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pedido_entregavel', function (Blueprint $table) {
-            $table->ulid('id');
-            $table->string('pedido_id');
-            $table->string('entregavel_id');
-            $table->timestamps();
+        Schema::table('pedidos', function (Blueprint $table) {
+            $table->string('aceite')->nullable();
+            $table->string('data_aceite')->nullable();
+            $table->string('descricao_aceite')->nullable();
         });
     }
 
@@ -24,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pedido_entregavel');
+        Schema::table('pedidos', function (Blueprint $table) {
+            //
+        });
     }
 };

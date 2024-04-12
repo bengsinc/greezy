@@ -14,4 +14,7 @@ class Entregavel extends Model
     protected $guarded = [
         'id'
     ];
+    public function servico(){
+        return $this->belongsTo(Servico::class, 'entregavel_id');
+    }
 }

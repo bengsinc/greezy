@@ -46,31 +46,7 @@
                         <option value="Acima de R$ 8.000,00">Acima de R$ 8.000,00</option>
                     </select>
                 </div>
-                <div class="sm:col-span-6">
-                    <label for="paymentPreference" class="block text-sm font-medium text-gray-800">Preferência no Tipo
-                        de Pagamento</label>
-                    <select wire:model="tipo_pagamento" id="paymentPreference" name="paymentPreference" autocomplete="paymentPreference"
-                            class="block w-full px-3 py-2 rounded-md border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring focus:border-indigo-500">
-                        <option>Selecione</option>
-                        <option value="Transferência Bancária">Transferência Bancária</option>
-                        <option value="Pix">Pix</option>
-                        <option value="Dinheiro">Dinheiro</option>
-                        <option value="Cartão de Crédito">Cartão de Crédito</option>
-                        <option value="Cartão de Débito">Cartão de Débito</option>
-                        <option value="Boleto Bancário">Boleto Bancário</option>
-                    </select>
-                </div>
-                <div class="sm:col-span-6">
-                    <label for="paymentMethod" class="block text-sm font-medium text-gray-800">Preferência na Forma de
-                        Pagamento</label>
-                    <select wire:model="forma_pagamento" id="paymentMethod" name="paymentMethod" autocomplete="paymentMethod"
-                            class="block w-full px-3 py-2 rounded-md border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring focus:border-indigo-500">
-                        <option>Selecione</option>
-                        <option value="À vista">À vista</option>
-                        <option value="Parcelado">Parcelado</option>
-                        <option value="Entrada + Parcela">Entrada + Parcela</option>
-                    </select>
-                </div>
+
                 <div class="sm:col-span-6">
                     <label for="name" class="block text-sm font-medium text-gray-800">Nome</label>
                     <input wire:model="nome" type="text" name="name" id="name" autocomplete="name"

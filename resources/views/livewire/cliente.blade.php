@@ -59,7 +59,6 @@
                     <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
                          src="{{url('storage').'/'.$item}}" alt="Transistor" width="158" style="max-height: 50px">
                 @endforeach
-
             @endif
 
         </div>

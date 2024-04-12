@@ -3,6 +3,7 @@
 namespace App\Filament\App\Resources;
 
 use App\Filament\App\Resources\EntregaveisPedidoResource\RelationManagers\PedidoEntregavelRelationManager;
+use App\Filament\App\Resources\PedidoResource\RelationManagers\EntregaveisRelationManager;
 use App\Filament\Resources\PedidoResource\Pages;
 use App\Filament\Resources\PedidoResource\RelationManagers;
 use App\Models\Pedido;
@@ -27,7 +28,7 @@ class PedidoResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Detalhes do Pedido')
+                Forms\Components\Section::make('Informações do Pedido')
                     ->schema([
                         Forms\Components\TextInput::make('numero')
                             ->label('Número do pedido')
@@ -36,25 +37,13 @@ class PedidoResource extends Resource
                         Forms\Components\Textarea::make('observacao')
                             ->label('Observação do cliente')
                             ->disabled(),
-                        // Outros campos relacionados aos detalhes do pedido
-                    ]),
-                Forms\Components\Section::make('Informações de Pagamento')
-                    ->schema([
+
                         Forms\Components\TextInput::make('orcamento')
                             ->label('Orçamento')
                             ->maxLength(255)
                             ->disabled()
                             ->columnSpan(1),
-                        Forms\Components\TextInput::make('tipo_pagamento')
-                            ->label('Tipo de pagamento')
-                            ->maxLength(255)
-                            ->disabled()
-                            ->columnSpan(1),
-                        Forms\Components\TextInput::make('forma_pagamento')
-                            ->label('Forma de pagamento')
-                            ->maxLength(255)
-                            ->disabled()
-                            ->columnSpan(1),
+
                         // Outros campos relacionados às informações de pagamento
                     ]),
                 Forms\Components\Section::make('Informações do Solicitante')
@@ -68,26 +57,34 @@ class PedidoResource extends Resource
                             ->maxLength(255),
                         // Outros campos relacionados ao solicitante
                     ]),
-                Forms\Components\Section::make('Entregáveis Solicitados')
-                    ->schema([
-
-                        Forms\Components\KeyValue::make('entregavel')
-                            ->label('Entregáveis')
-                            ->columnSpanFull()
-                            ->addable(false)
-                            ->deletable(false),
-                    ]),
+//                Forms\Components\Section::make('Entregáveis Solicitados')
+//                    ->schema([
+//
+//                        Forms\Components\KeyValue::make('entregavel')
+//                            ->label('Entregáveis')
+//                            ->columnSpanFull()
+//                            ->addable(false)
+//                            ->deletable(false),
+//                    ]),
                 Forms\Components\Section::make('Dados da sua proposta')
                     ->schema([
                         Forms\Components\RichEditor::make('descricao')
                             ->label('Descrição')
                             ->helperText('Descreva as condições de sua proposta, como valores, condições etc')
                            ,
+                        Forms\Components\TextInput::make('tipo_pagamento')
+                            ->label('Tipo de pagamento')
+                            ->maxLength(255)
+                            ->columnSpan(1),
+                        Forms\Components\TextInput::make('forma_pagamento')
+                            ->label('Forma de pagamento')
+                            ->maxLength(255)
+                            ->columnSpan(1),
 
                         Forms\Components\Select::make('status')
                             ->options([
                                 'aguardando análise' => 'Aguardando Análise',
-                                'em analise' => 'Em análise',
+//                                'em analise' => 'Em análise',
                                 'aguardando cliente' => 'Aguardando cliente',
                                 'cancelado' => 'Cancelado',
                                 'aceito' => 'Aceito',
@@ -146,7 +143,7 @@ class PedidoResource extends Resource
     public static function getRelations(): array
     {
         return [
-//            PedidoEntregavelRelationManager::class
+             EntregaveisRelationManager::class
         ];
     }
 

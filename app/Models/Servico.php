@@ -18,4 +18,6 @@ class Servico extends Model
     public function entregaveis(){
        return $this->hasMany(Entregavel::class);
     }
+
+
 }

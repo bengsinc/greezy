@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Landinpages;
 
+use App\Models\Entregavel;
 use App\Models\Pedido;
 use App\Models\PedidoEntregavel;
 use App\Models\Servico;
@@ -19,8 +20,6 @@ class Formulario extends Component
     public $entregaveis = [];
     public $observacao;
     public $orcamento;
-    public $tipo_pagamento;
-    public $forma_pagamento;
     public $nome;
     public $telefone;
     public $email;
@@ -55,8 +54,6 @@ class Formulario extends Component
             $pedido->numero = $ultimoNumero + 1;
             $pedido->observacao = $this->observacao;
             $pedido->orcamento = $this->orcamento;
-            $pedido->tipo_pagamento = $this->tipo_pagamento;
-            $pedido->forma_pagamento = $this->forma_pagamento;
             $pedido->nome = $this->nome;
             $pedido->email = $this->email;
             $pedido->telefone = $this->telefone;
@@ -71,10 +68,16 @@ class Formulario extends Component
             if ($this->entregaveis) {
                 foreach ($this->entregaveis as $item) {
 
+                    $ent = Entregavel::find($item);
+
+
                     $entregavel = new PedidoEntregavel();
 
                     $entregavel->pedido_id = $pedido->id;
                     $entregavel->entregavel_id = $item;
+                    $entregavel->nome = $ent->nome;
+                    $entregavel->descricao = $ent->descricao;
+                    $entregavel->servico_id = $ent->servico_id;
 
                     $entregavel->save();
                 }
@@ -82,7 +85,6 @@ class Formulario extends Component
         });
 
 
-        return redirect()->route('site.pedido', $this->pedido_id);
-        // dd($this->tipo_pagamento, $this->entregaveis, $this->observacao, $this->orcamento, $this->forma_pagamento, $this->nome, $this->telefone, $this->email);
+        return redirect()->route('obrigado');
     }
 }

@@ -22,5 +22,10 @@ Route::get('/', function () {
 //})->name('login');
 
 Route::get('/pagina/{id}', \App\Livewire\Landinpages\Landinpage::class)->name('site.landinpage');
-Route::get('/pedido/{id}', \App\Livewire\Pedidos::class)->name('site.pedido');
+Route::get('/pedido/{pedido}', \App\Livewire\Pedidos::class)->name('site.pedido');
+
+Route::get('/obrigado', function () {
+    return view('obrigado');
+})->name('obrigado');
+
 Route::get('/{user}/formularios', \App\Livewire\Cliente::class)->name('site.formularios');
