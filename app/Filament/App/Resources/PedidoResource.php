@@ -31,6 +31,13 @@ class PedidoResource extends Resource
             ->schema([
                 Forms\Components\Section::make('Informações do Pedido')
                     ->schema([
+
+                        Forms\Components\ViewField::make('rating')
+                            ->viewData([
+                                'id' => '',
+                            ])
+                            ->view('filament.linkpedido'),
+
                         Forms\Components\TextInput::make('numero')
                             ->label('Número do pedido')
                             ->maxLength(255)
