@@ -15,13 +15,15 @@ class Pedidos extends Component
     public $config;
     public $descricao_aceite;
 
+    public $preferencia_pagamento;
+
     public $aceite = null;
 
     public function mount(Pedido $pedido){
        $this->pedido =  $pedido;
        $this->config =  Config::query()->where('user_id', $pedido->cliente->id)->first();
 
-
+//dd($this->config->cor_primaria);
 
 
     }
@@ -44,6 +46,7 @@ class Pedidos extends Component
     public function aceitar(){
         $this->pedido->update(
             [
+                'forma_pagamento' =>$this->preferencia_pagamento,
                 'aceite' => 'sim',
                 'data_aceite' => now(),
                 'status' => 'aceito',

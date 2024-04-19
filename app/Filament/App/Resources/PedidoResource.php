@@ -11,6 +11,7 @@ use App\Models\PedidoEntregavel;
 use Filament\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -72,12 +73,36 @@ class PedidoResource extends Resource
                             ->label('Descrição')
                             ->helperText('Descreva as condições de sua proposta, como valores, condições etc')
                            ,
-                        Forms\Components\TextInput::make('tipo_pagamento')
-                            ->label('Tipo de pagamento')
+                        Forms\Components\TextInput::make('investimento')
+                            ->label('Valor do investimento')
                             ->maxLength(255)
                             ->columnSpan(1),
                         Forms\Components\TextInput::make('forma_pagamento')
                             ->label('Forma de pagamento')
+                            ->maxLength(255)
+                            ->columnSpan(1),
+
+                        Forms\Components\Select::make('periodo_pagamento')
+                            ->label('Periodicidade do pagamento')
+                            ->live()
+                            ->options([
+                                'pagamento_unico' => 'Pagamento Unico',
+                                'mensal' => 'Mensal',
+                                'parcelado' => 'Parcelado',
+                            ]),
+
+                        Forms\Components\TextInput::make('numero_parcelas')
+                            ->label('Número de parcelas')
+                            ->maxLength(255)
+                            ->visible(function (Get $get) {
+                                if (in_array($get('periodo_pagamento'), ['parcelado',])) {
+                                    return true;
+                                }
+                            })
+                            ->columnSpan(1),
+
+                        Forms\Components\TextInput::make('duracao_projeto')
+                            ->label('Duração do projeto')
                             ->maxLength(255)
                             ->columnSpan(1),
 

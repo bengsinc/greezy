@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('pedidos', function (Blueprint $table) {
             $table->string('observacao')->nullable();
             $table->string('orcamento')->nullable();
-            $table->string('tipo_pagamento')->nullable();
+            $table->string('investimento')->nullable();
             $table->string('forma_pagamento')->nullable();
             $table->string('nome')->nullable();
             $table->string('telefone')->nullable();
