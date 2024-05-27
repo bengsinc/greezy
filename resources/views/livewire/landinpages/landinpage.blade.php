@@ -101,7 +101,7 @@
 
 
         <!-- Form section -->
-        <div class="relative -z-10 mt-12 px-6 lg:px-8 mb-8" id="orcamento">
+        <div class="relative -z-10 mt-8 px-6 lg:px-8 mb-8" id="orcamento">
             <div
                 class="absolute inset-x-0 top-1/2 -z-10 flex -translate-y-1/2 transform-gpu justify-center overflow-hidden blur-3xl sm:bottom-0 sm:right-[calc(50%-6rem)] sm:top-auto sm:translate-y-0 sm:transform-gpu sm:justify-end"
                 aria-hidden="true">

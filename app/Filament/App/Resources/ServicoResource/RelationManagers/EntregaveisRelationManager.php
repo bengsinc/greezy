@@ -25,6 +25,9 @@ class EntregaveisRelationManager extends RelationManager
                 Forms\Components\RichEditor::make('descricao')
                     ->columnSpanFull()
                     ->label('Conteúdo do entregável'),
+                Forms\Components\Hidden::make('user_id')
+                    ->default(auth()->user()->id) // Define o valor padrão como o ID do usuário autenticado
+                    ->required(),
 
 //                Forms\Components\FileUpload::make('icone')
 //                    ->label('icone que representa o serviço em formato png com fundo transparente (máximo 1MB)')

@@ -26,6 +26,7 @@ class EntregaveisRelationManager extends RelationManager
                     ->required()
                     ->columnSpanFull()
                     ->maxLength(255),
+
             ]);
     }
 
