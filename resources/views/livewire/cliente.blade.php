@@ -1,25 +1,22 @@
 <div>
-    <div class="relative isolate overflow-hidden bg-gray-900 px-6 py-24 sm:py-32 lg:px-8">
-        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover">
-        <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
-            <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
-        </div>
-        <div class="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu" aria-hidden="true">
-            <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[{{$config->cor_primaria}}] to-[{{$config->cor_secundaria}}] opacity-20" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
-        </div>
-        <div class="mx-auto max-w-2xl text-center">
-            @if($config->logo)
-                <img src="{{url('storage/'.$config->logo)}}" class="mx-auto w-[200px] mb-4">
-            @endif
-            <h2 class="text-4xl font-bold tracking-tight text-white sm:text-4xl">{{$config->nome}}</h2>
-            <div class="mt-6 text-lg leading-8 text-gray-200">{!! $config->descricao !!}</div>
-        </div>
-    </div>
+    <!-- Header -->
+    <header>
+        <img class="w-full" src="{{url('storage').'/'.$config->banner}}" alt="">
+        <div class="py-24 sm:py-8">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="mx-auto max-w-2xl text-center">
+                    <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-6xl">{{$config->frase_1}}</h1>
+                    <p class="mt-6 text-lg leading-8 text-gray-600">{!! $config->frase_2 !!}</p>
 
+                </div>
+
+            </div>
+        </div>
+    </header>
     <div class="mx-auto my-12 max-w-7xl px-4 sm:px-6 lg:px-8">
         <!-- We've used 3xl here, but feel free to try other max-widths based on your needs -->
-        <div class="mx-auto max-w-3xl">
-            <h2 class="text-4xl font-bold tracking-tight text-[{{$config->cor_primaria}}] sm:text-6xl">Nossos Serviços</h2>
+        <div class="mx-auto max-w-4xl">
+            <h2 class="text-4xl text-center font-bold tracking-tight text-[{{$config->cor_primaria}}] sm:text-4xl">Conheça nossos serviços</h2>
 
             <ul role="list" class="divide-y divide-gray-100">
                 @if($formularios)
@@ -34,8 +31,8 @@
 
                         </div>
                     </div>
-                    <div class="flex flex-none items-center gap-x-4">
-                        <a href="{{route('site.landinpage',$item->id )}}" class="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block">Solicitar Orçamento</a>
+                    <div class="flex flex-none items-start gap-x-4">
+                        <a href="{{route('site.landinpage',$item->id )}}" class="bg-[{{$config->cor_primaria}}]  rounded-md  px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block">Solicitar Orçamento</a>
                     </div>
                 </li>
                     @endforeach
@@ -47,7 +44,7 @@
     </div>
 
     <!-- Logo cloud -->
-    <div class="mx-auto max-w-7xl px-6 lg:px-8 mt-8  bg-gray-100 py-8 rounded-lg">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 md:my-12 my-8  py-8 ">
         <p class="text-3xl font-bold tracking-tight text-[{{$config->cor_primaria}}] sm:text-4xl mb-12 text-center">Quem
             Confia </p>
 
@@ -66,7 +63,8 @@
     </div>
 
     <!-- Footer -->
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="w-full bg-gray-100">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 ">
         <footer aria-labelledby="footer-heading" class="relative py-12">
             <div class="xl:grid xl:grid-cols-3 xl:gap-8">
                 <div>
@@ -142,7 +140,7 @@
 
         </footer>
     </div>
-
+    </div>
 
 
 </div>

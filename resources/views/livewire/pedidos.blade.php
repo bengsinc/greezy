@@ -109,7 +109,7 @@
                                 @foreach($entregaveis as $entregavel)
                                     <div class="col-span-12 md:col-span-6 bg-[{{$this->config->cor_primaria}}] rounded-2xl	 p-4">
                                         <div class="flex items-center justify-around">
-                                            <img class="w-20" src="{{url('')}}/img/2.png" alt="Imagem">
+{{--                                            <img class="w-20" src="{{url('')}}/img/2.png" alt="Imagem">--}}
                                             <h2 class="text-white font-bold text-xl">{{$entregavel->nome}}</h2>
                                         </div>
                                         <span class="text-white text-lg p-5">{!! $entregavel->descricao !!}</span>

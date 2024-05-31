@@ -15,9 +15,15 @@ class Pedido extends Model
         'id'
     ];
 
+    protected $casts = [
+        'servicos_selecionados' => 'array'
+    ];
+
     public function listaentregaveis(){
             return $this->hasMany(PedidoEntregavel::class,  'pedido_id');
     }
+
+
 
 
     public function cliente(){

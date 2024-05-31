@@ -15,13 +15,17 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
 
     <!-- ICONES -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 
 
 </head>
 <body>
+<div class="flex items-center justify-center h-screen">
+    <div class="text-center">
+        <h1 class="text-3xl mb-4 font-bold">Seu pedido foi enviado, muito obrigado.</h1>
+        <p class="text-xl">Nossa equipe entrará em contato com você assim que possível.</p>
+    </div>
+</div>
 
-<h1>Obrigado!</h1>
 </body>
 </html>

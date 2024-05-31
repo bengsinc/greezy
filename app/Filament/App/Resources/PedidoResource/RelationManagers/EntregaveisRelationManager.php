@@ -2,6 +2,7 @@
 
 namespace App\Filament\App\Resources\PedidoResource\RelationManagers;
 
+use App\Models\Servico;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -22,6 +23,15 @@ class EntregaveisRelationManager extends RelationManager
                     ->required()
                     ->columnSpanFull()
                     ->maxLength(255),
+
+                        Forms\Components\Select::make('servico_id')
+                            ->required()
+                            ->columnSpanFull()
+                            ->label('Selecione o serviço')
+                            ->options(function (){
+                                return Servico::query()->whereIn('id', $this->ownerRecord->servicos_selecionados)->pluck('nome', 'id');
+                            }),
+
                 Forms\Components\RichEditor::make('descricao')
                     ->required()
                     ->columnSpanFull()

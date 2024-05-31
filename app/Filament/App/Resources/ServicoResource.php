@@ -34,15 +34,17 @@ class ServicoResource extends Resource
                     ->columnSpanFull()
                     ->label('Descrição do Serviço')
                     ->required(),
-                Forms\Components\FileUpload::make('imagem')
-                    ->label('Adicionar imagem (máximo 2MB)')
-                    ->openable(true)
-                    ->columnSpanFull()
-                    ->directory('servicos')
-                    ->previewable(true),
+//                Forms\Components\FileUpload::make('imagem')
+//                    ->label('Adicionar imagem (máximo 2MB)')
+//                    ->openable(true)
+//                    ->columnSpanFull()
+//                    ->directory('servicos')
+//                    ->previewable(true),
                 Forms\Components\Select::make('tipo')
                     ->options([
                         'mensal' => 'Mensal',
+                        'semestral' => 'Semestral',
+                        'anual' => 'Anual',
                         'avulso' => 'Avulso',
                     ])
                     ->required()

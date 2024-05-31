@@ -21,6 +21,7 @@ class Pedidos extends Component
 
     public function mount(Pedido $pedido){
        $this->pedido =  $pedido;
+//       dd($this->pedido->listaentregaveis->toArray());
        $this->config =  Config::query()->where('user_id', $pedido->cliente->id)->first();
 
 //dd($this->config->cor_primaria);

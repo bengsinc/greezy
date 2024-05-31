@@ -8,6 +8,7 @@ use App\Filament\Resources\PedidoResource\Pages;
 use App\Filament\Resources\PedidoResource\RelationManagers;
 use App\Models\Pedido;
 use App\Models\PedidoEntregavel;
+use App\Models\Servico;
 use Filament\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -42,6 +43,8 @@ class PedidoResource extends Resource
                             ->label('Número do pedido')
                             ->maxLength(255)
                             ->disabled(),
+
+
                         Forms\Components\Textarea::make('observacao')
                             ->label('Observação do cliente')
                             ->disabled(),
@@ -52,8 +55,23 @@ class PedidoResource extends Resource
                             ->disabled()
                             ->columnSpan(1),
 
+
+
                         // Outros campos relacionados às informações de pagamento
                     ]),
+
+                Forms\Components\Section::make('Serviços Selecionados')
+                    ->schema([
+                        Forms\Components\CheckboxList::make('servicos_selecionados')
+                        ->options(function ($record){
+//                            dd($record->servicos_selecionados);
+//                            return Servico::query()->pluck('nome', 'id');
+                            return Servico::query()->whereIn('id', $record->servicos_selecionados)->pluck('nome', 'id');
+                        })
+                        ->disabled()
+
+                    ]),
+
                 Forms\Components\Section::make('Informações do Solicitante')
                     ->schema([
                         Forms\Components\TextInput::make('nome')
@@ -62,6 +80,10 @@ class PedidoResource extends Resource
                         PhoneNumber::make('telefone')
                             ->format('(99)99999-9999'),
                         Forms\Components\TextInput::make('email')
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('empresa')
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('segmento')
                             ->maxLength(255),
                         // Outros campos relacionados ao solicitante
                     ]),
@@ -95,6 +117,8 @@ class PedidoResource extends Resource
                             ->options([
                                 'pagamento_unico' => 'Pagamento Unico',
                                 'mensal' => 'Mensal',
+                                'semestral' => 'Semestral',
+                                'anual' => 'Anual',
                                 'parcelado' => 'Parcelado',
                             ]),
 

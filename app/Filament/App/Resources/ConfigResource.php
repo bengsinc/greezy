@@ -29,10 +29,25 @@ class ConfigResource extends Resource
                 Forms\Components\TextInput::make('nome')
                     ->columnSpanFull()
                     ->label('Nome da empresa'),
+                Forms\Components\Textarea::make('frase_1')
+                    ->columnSpanFull()
+                    ->label('Frase 01 para aparecer na página de serviços'),
+
+                Forms\Components\Textarea::make('frase_2')
+                    ->columnSpanFull()
+                    ->label('Frase 02 para aparecer na página de serviços'),
+
 
                 Forms\Components\RichEditor::make('descricao')
                     ->columnSpanFull()
                     ->label('Descrição da empresa'),
+
+                Forms\Components\FileUpload::make('banner')
+                    ->label('Banner da empresa para aparecer na landinpage e formulário')
+                    ->openable(true)
+                    ->columnSpanFull()
+                    ->directory('banners')
+                    ->previewable(true),
 
                 Forms\Components\FileUpload::make('logo')
                 ->label('Logo da empresa em formato png com fundo transparente (máximo 2MB)')
