@@ -65,7 +65,6 @@ class PedidoResource extends Resource
                         Forms\Components\CheckboxList::make('servicos_selecionados')
                         ->options(function ($record){
 //                            dd($record->servicos_selecionados);
-//                            return Servico::query()->pluck('nome', 'id');
                             return Servico::query()->whereIn('id', $record->servicos_selecionados)->pluck('nome', 'id');
                         })
                         ->disabled()

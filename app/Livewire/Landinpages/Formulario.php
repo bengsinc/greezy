@@ -102,7 +102,7 @@ class Formulario extends Component
 
 
             $pedido = new Pedido();
-            $pedido->servicos_selecionados = json_encode($this->servicosSelecionados); // Adiciona os IDs dos serviços selecionados
+            $pedido->servicos_selecionados =$this->servicosSelecionados;
 
             $pedido->numero = $proximoNumero;
             $pedido->observacao = $this->observacao;
